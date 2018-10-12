@@ -14,21 +14,21 @@ build: $(WRAPPER_DIR)/$(WRAPPER_CPP) $(WRAPPER_DIR)/$(WRAPPER_H)
 	clang --shared wrapper.o -o libwrapper.so
 
 # make a main program using the wrapper library
-main: main.c $(WRAPPER_DIR)/$(WRAPPER_CPP) $(WRAPPER_DIR)/$(WRAPPER_H)
-	cc -g main.c -I. -L. -lwrapper -I${PLEORA_HEADERS} -L${PLEORA_LIB} -L${GENICAM_LIB} \
+main: examples/main.c $(WRAPPER_DIR)/$(WRAPPER_CPP) $(WRAPPER_DIR)/$(WRAPPER_H)
+	cc -g examples/main.c -I. -L. -lwrapper -I${PLEORA_HEADERS} -L${PLEORA_LIB} -L${GENICAM_LIB} \
 		-lPvSystem -lPvDevice -lPvBuffer -lPvBase -lPvStream -lPtUtilsLib  \
 		-lPvGenICam -lstdc++ -fPIC -o main
 
 rust:
-	cd ./ebus && cargo build --release && cd ..
+	cargo build --release
 
 upload: 
 	cp ./libwrapper.so ~/Downloads/libwrapper.so
 	cp ./main ~/Downloads/main
-	cp ./ebus/target/release/ebus-bin ~/Downloads/ebus-bin
+	cp ./target/release/ebus-bin ~/Downloads/ebus-bin
 
 clean:
-	cd ./ebus && cargo clean && cd ..
+	cargo clean
 	rm ./main libwrapper.so wrapper.o
 	rm ~/Downloads/main
 	rm ~/Downloads/ebus-bin
