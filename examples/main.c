@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ebus-wrapper/wrapper.h"
+#include "../ebus-wrapper/wrapper.h"
 
 // MAIN
 int main() {
