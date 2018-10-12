@@ -1,0 +1,6 @@
+*/target/*
+*.o
+*.so
+*.lock
+main
+
