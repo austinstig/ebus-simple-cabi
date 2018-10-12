@@ -5,7 +5,7 @@ use bindgen::builder;
 use std::env;
 
 const PLEORA_ROOT: &'static str = "/opt/pleora/ebus_sdk/Ubuntu-x86_64";
-const WRAPPER_ROOT: &'static str = "/home/austinstig/Developer/pleora-wrapper";
+const WRAPPER_ROOT: &'static str = "/home/tflight/Developer/pleora-wrapper";
 
 fn main() {
 
