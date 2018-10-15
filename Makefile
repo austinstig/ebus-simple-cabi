@@ -1,5 +1,5 @@
 # define some make variables
-PLEORA_ROOT = $(PUREGEV_ROOT)
+PLEORA_ROOT = /opt/pleora/ebus_sdk/Ubuntu-x86_64/
 PLEORA_HEADERS = $(PLEORA_ROOT)include
 PLEORA_LIB = $(PLEORA_ROOT)lib
 GENICAM_LIB = $(PLEORA_ROOT)lib/genicam/bin/Linux64_x64

@@ -333,17 +333,19 @@ extern "C" {
             // process the buffer!
             if ( res.IsOK() && opr.IsOK() ) {
                 // If the buffer contains an image, display width and height.
-                if ( sBuf->GetPayloadType() == PvPayloadTypeImage ) {
-                    // determine number of elements to get
-                    uint32_t num = ( sBuf->GetRequiredSize() < buflen ) ?
-                        sBuf->GetRequiredSize():
-                        buflen;
-                    
-                    // now copy data from the image to the buffer
-                    std::memcpy(buffer, sBuf->GetImage()->GetDataPointer(), num);
+                if ( sBuf != NULL ) {
+                    if ( sBuf->GetPayloadType() == PvPayloadTypeImage ) {
+                        // determine number of elements to get
+                        uint32_t num = ( sBuf->GetRequiredSize() < buflen ) ?
+                            sBuf->GetRequiredSize():
+                            buflen;
+                        
+                        // now copy data from the image to the buffer
+                        std::memcpy(buffer, sBuf->GetImage()->GetDataPointer(), num);
+                    }
+                    // get the timestamp in tick's from the buffer
+                    ts = sBuf->GetTimestamp();
                 }
-                // get the timestamp in tick's from the buffer
-                ts = sBuf->GetTimestamp();
             }
 
             // requeue the buffer to the stream

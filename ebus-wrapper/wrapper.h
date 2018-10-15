@@ -1,5 +1,6 @@
 #ifndef __WRAPPER_H
 #define __WRAPPER_H
+#include <stdlib.h>
 #include <stdbool.h>
 
 // define some structures

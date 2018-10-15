@@ -3,13 +3,14 @@ extern crate cc;
 
 use bindgen::builder;
 use std::env;
+use std::path::PathBuf;
 
 const PLEORA_ROOT: &'static str = "/opt/pleora/ebus_sdk/Ubuntu-x86_64";
+const WRAPPER_ROOT: &'static str = "/home/tflight/Documents/ebus-simple-cabi";
 
 fn main() {
 
-    let WRAPPER_ROOT: &str = env::current_dir().expect("no current dir!").to_str();
-
+    println!("wrapper_root: {:?}", WRAPPER_ROOT);
     // check OS
     if !cfg!(target_os = "linux") {
         eprintln!("only works on linux!");
