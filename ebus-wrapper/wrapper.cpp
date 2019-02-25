@@ -334,7 +334,7 @@ extern "C" {
             if ( res.IsOK() && opr.IsOK() ) {
                 // If the buffer contains an image, display width and height.
                 if ( sBuf != NULL ) {
-                    if ( sBuf->GetPayloadType() == PvPayloadTypeImage ) {
+                    if ( sBuf->GetPayloadType() == PvPayloadTypeImage && sBuf->GetAcquiredSize() == sBuf->GetRequiredSize()) {
                         // determine number of elements to get
                         uint32_t num = ( sBuf->GetRequiredSize() < buflen ) ?
                             sBuf->GetRequiredSize():
