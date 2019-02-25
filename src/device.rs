@@ -126,7 +126,7 @@ impl Device {
 
     /// shutdown the device freeing the resources
     fn shutdown(&mut self) {
-        println!("shutdown!");
+        //println!("shutdown!");
         // get a mut ref to the state ptr
         if let Some(mut state) = self.state {
             //debug!("SHUTDOWN DEVICE");

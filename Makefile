@@ -19,17 +19,11 @@ main: examples/main.c $(WRAPPER_DIR)/$(WRAPPER_CPP) $(WRAPPER_DIR)/$(WRAPPER_H)
 		-lPvSystem -lPvDevice -lPvBuffer -lPvBase -lPvStream -lPtUtilsLib  \
 		-lPvGenICam -lstdc++ -fPIC -o main
 
+# build the rust wrapper
 rust:
 	cargo build --release
 
-upload: 
-	cp ./libwrapper.so ~/Downloads/libwrapper.so
-	cp ./main ~/Downloads/main
-	cp ./target/release/ebus-bin ~/Downloads/ebus-bin
-
+# clean up the former runs
 clean:
 	cargo clean
-	rm ./main libwrapper.so wrapper.o
-	rm ~/Downloads/main
-	rm ~/Downloads/ebus-bin
-	rm ~/Downloads/libwrapper.so
+	rm ./libwrapper.so ./wrapper.o

@@ -330,6 +330,7 @@ extern "C" {
             PvResult opr;
             // Retrieve next buffer
             PvResult res = state->stream->RetrieveBuffer( &sBuf, &opr, timeout );
+            
             // process the buffer!
             if ( res.IsOK() && opr.IsOK() ) {
                 // If the buffer contains an image, display width and height.
@@ -341,7 +342,8 @@ extern "C" {
                             buflen;
                         
                         // now copy data from the image to the buffer
-                        std::memcpy(buffer, sBuf->GetImage()->GetDataPointer(), num);
+                        const uint8_t *img = sBuf->GetImage()->GetDataPointer();
+                        std::memcpy(buffer, img, num);
                     }
                     // get the timestamp in tick's from the buffer
                     ts = sBuf->GetTimestamp();
@@ -351,6 +353,7 @@ extern "C" {
             // requeue the buffer to the stream
             state->stream->QueueBuffer( sBuf );
         }
+
         return ts;
     }
 #ifdef __cplusplus

@@ -40,8 +40,9 @@ fn main() {
                     // start time
                     let start = Instant::now();
                     let mut j = 0;
-                    for i in 0..100 {
-                        if device.acquire(&mut vec[..], 300_i32) != 0 {
+		    while j < 10_000 {
+                    //for i in 0..100 {
+                        if device.acquire(&mut vec[..], 1000_i32) != 0 {
                             j+=1;
                             f.write_all(&vec[..]);
                         }
