@@ -1,6 +1,6 @@
 extern crate num;
 
-include!(concat!(env!("OUT_DIR"), "/wrapper.rs"));
+include!("/home/myworld/Github/ebus-simple-cabi/ebus-wrapper/wrapper.rs");
 
 use std::ffi::CStr;
 use std::ffi::CString;

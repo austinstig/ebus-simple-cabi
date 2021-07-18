@@ -5,8 +5,8 @@ use bindgen::builder;
 use std::env;
 use std::path::PathBuf;
 
-const PLEORA_ROOT: &'static str = "/opt/pleora/ebus_sdk/Ubuntu-x86_64";
-const WRAPPER_ROOT: &'static str = "/home/tflight/Documents/ebus-simple-cabi";
+const PLEORA_ROOT: &'static str = "/opt/pleora/ebus_sdk/Ubuntu-18.04-x86_64";
+const WRAPPER_ROOT: &'static str = "/home/myworld/Github/ebus-simple-cabi/ebus-wrapper";
 
 fn main() {
 
@@ -18,11 +18,12 @@ fn main() {
     }
 
     // generate bindings
-    let out_dir = env::var("OUT_DIR").unwrap();
-    let dest = &format!("{}/wrapper.rs", out_dir);
+    // let out_dir = env::var("OUT_DIR").unwrap();
+    // let dest = &format!("{}/wrapper.rs", out_dir);
+    let dest = &format!("{}/wrapper.rs", WRAPPER_ROOT);
     let bindings = builder()
-        .header(format!("{}/ebus-wrapper/wrapper.h", WRAPPER_ROOT))
-        .clang_arg(format!("-I{}/ebus-wrapper", WRAPPER_ROOT))
+        .header(format!("{}/wrapper.h", WRAPPER_ROOT))
+        .clang_arg(format!("-I{}", WRAPPER_ROOT))
         .clang_arg(format!("-I{}/include", PLEORA_ROOT))
         .clang_arg(format!("-L{}", WRAPPER_ROOT))
         .clang_arg("-L/lib")
@@ -52,7 +53,7 @@ fn main() {
 
     // link ebus sdk
     println!("cargo:rustc-link-search=native={}",
-             "/opt/pleora/ebus_sdk/Ubuntu-x86_64/lib"
+             "/opt/pleora/ebus_sdk/Ubuntu-18.04-x86_64/lib"
     );
     println!("cargo:rustc-link-lib=dylib={}", "PvBase");
     println!("cargo:rustc-link-lib=dylib={}", "PvDevice");
@@ -63,7 +64,7 @@ fn main() {
 
     // link to genicam
     println!("cargo:rustc-link-search=native={}",
-             "/opt/pleora/ebus_sdk/Ubuntu-x86_64/lib/genicam/bin/Linux64_x64"
+             "/opt/pleora/ebus_sdk/Ubuntu-18.04-x86_64/lib/genicam/bin/Linux64_x64"
     );
     println!("cargo:rustc-link-lib=dylib={}", "PvGenICam");
 
